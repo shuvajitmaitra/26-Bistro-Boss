@@ -1,0 +1,129 @@
+import logImage from "../../assets/others/authentication2.png";
+import loginBg from "../../assets/others/authentication.png";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { useContext, useEffect, useState, } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
+import {  useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+
+const Login = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location.state);
+    const {userSignIn} = useContext(AuthContext)
+
+    const [, setValid] = useState(true);
+    
+    useEffect(() => {
+        loadCaptchaEnginge(6); 
+      
+    }, [])
+    
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        userSignIn(email, password)
+        .then(()=>{
+            toast.success("Successfully user logged in!")
+            // navigate(location.state ? location.state.form.pathname : "/");
+            console.log(location.state.from);
+            navigate(location.state ? location.state.from : "/");
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
+
+    }
+
+    const handleCheck = (e) =>{
+      // console.log(e.target.captcha.value);
+      console.log(e.target.value);
+ 
+       if(validateCaptcha(e.target.value)){
+           setValid(false)
+       }
+       else{
+           setValid(true)
+       }
+
+   }
+  return (
+    <div style={{ backgroundImage: `url(${loginBg})` }}>
+       <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
+      <div className="max-w-screen-xl mx-auto flex justify-center items-center gap-20 h-screen p-20 font-mono">
+        <div className="flex-1 border">
+          <img
+            src={logImage}
+            alt=""
+          />
+        </div>
+
+        <form onSubmit={handleSubmit} className="card-body flex-1 ">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              placeholder="email"
+              name="email"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="text"
+              name="password"
+              placeholder="password"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+               <div className="w-full text-end  flex justify-between border border-zinc-300 bg-white rounded-lg p-2">
+               <LoadCanvasTemplate/>
+               </div>
+
+            <label className="label">
+              <span className="label-text">Captcha</span>
+            </label>
+          </div>
+
+          <div className="form-control">
+            <input
+            
+              type="text"
+              name="captcha"
+              onBlur={handleCheck} 
+              placeholder="write the captcha above"
+              className="input input-bordered normal-case font-sans"
+              
+            />
+            <input
+            disabled={false}
+              style={{ backgroundColor: "rgba(209, 160, 84, 0.70)" }}
+              className="btn"
+              type="submit"
+              value="Login"
+           />
+              
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+export default Login;
