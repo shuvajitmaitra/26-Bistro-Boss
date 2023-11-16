@@ -6,14 +6,15 @@ import { PropTypes } from "prop-types";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation()
-  console.log(location);
-  // if (loading) {
-  //   return (
-  //     <div className="h-screen flex justify-center items-center">
-  //       <progress className="progress w-56"></progress>
-  //     </div>
-  //   );
-  // }
+
+  
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
   if (user) {
     return children;
   } else {

@@ -32,20 +32,17 @@ const Login = () => {
         userSignIn(email, password)
         .then(()=>{
             toast.success("Successfully user logged in!")
-            // navigate(location.state ? location.state.form.pathname : "/");
-            console.log(location.state.from);
+    
             navigate(location.state ? location.state.from : "/");
         })
         .catch(error=>{
+          toast.error(error.message.firebase , "Email/Password invalid")
             console.log(error.message);
         })
 
     }
 
-    const handleCheck = (e) =>{
-      // console.log(e.target.captcha.value);
-      console.log(e.target.value);
- 
+    const handleCheck = (e) =>{ 
        if(validateCaptcha(e.target.value)){
            setValid(false)
        }

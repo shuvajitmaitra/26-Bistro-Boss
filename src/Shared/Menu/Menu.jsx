@@ -1,4 +1,3 @@
-import { checkPropTypes } from "prop-types";
 
 const Menu = ({title, price, image, description}) => {
     return (
@@ -22,10 +21,4 @@ const Menu = ({title, price, image, description}) => {
     );
 };
 
-Menu.propTypes = {
-    title : checkPropTypes.string,
-    price : checkPropTypes.number,
-    image : checkPropTypes.image,
-    description : checkPropTypes.string,
-}
 export default Menu;

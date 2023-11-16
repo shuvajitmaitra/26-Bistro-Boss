@@ -1,16 +1,57 @@
 import { PropTypes } from "prop-types";
 import useAuth from "../../Hook/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import toast from "react-hot-toast";
+import useCart from "../../Hook/useCart";
 
 const Card = ({ item }) => {
+  const [,refetch] = useCart()
+  const axiosSecure = useAxiosSecure()
   const { user } = useAuth();
   const navigate = useNavigate()
+  const location = useLocation()
   
   const handleAddToCart = () => {
     if (user && user.email) {
-      console.log(user);
+      const cartItem = {
+        menuId : item._id,
+        email: user.email,
+        name: item.name,
+        price: item.price,
+        image: item.image
+
+      }
+      axiosSecure.post("/carts",cartItem)
+      .then( (response) =>{
+        if(response.data.insertedId){
+          refetch()
+          toast.success("Successfully data sent")
+        }
+      })
+      .catch( (error)=> {
+        console.log(error);
+      });
     } else {
-      navigate()
+      Swal.fire({
+        title: "Add to cart?",
+        text: "You need to be logged in!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login",{ state: { from: location } } )
+          // Swal.fire({
+          //   title: "Deleted!",
+          //   text: "Your file has been deleted.",
+          //   icon: "success"
+          // });
+        }
+      });
     }
   };
   return (

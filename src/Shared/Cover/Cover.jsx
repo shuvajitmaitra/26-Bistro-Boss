@@ -1,5 +1,5 @@
 import { Parallax } from "react-parallax";
-import { checkPropTypes } from "prop-types";
+import { PropTypes } from "prop-types";
 
 const Cover = ({title, description, imageCover}) => {
 
@@ -33,8 +33,8 @@ const Cover = ({title, description, imageCover}) => {
     )}
 
     Cover.propTypes ={
-        title: checkPropTypes.string, 
-        description: checkPropTypes.string,
-        imageCover: checkPropTypes.image
+        title: PropTypes.string, 
+        description: PropTypes.string,
+        imageCover: PropTypes.string
     }
 export default Cover;

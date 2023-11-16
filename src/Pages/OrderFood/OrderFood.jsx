@@ -13,8 +13,16 @@ const OrderFood = () => {
   const {category} = useParams()
   const initialIndex = item.indexOf(category)
   const [tabIndex, setTabIndex] = useState(initialIndex);
-  const [menus] = useMenu();
+  const [menus, isLoading] = useMenu();
 
+  
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
   const pizzas = menus.filter((item) => item.category === "pizza");
   const dessert = menus.filter((item) => item.category === "dessert");
   const soup = menus.filter((item) => item.category === "soup");

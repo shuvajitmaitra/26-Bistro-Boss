@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "../Tilte/Title";
 import Menu from "../Menu/Menu";
-import { checkPropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 const MenuByCategory = ({ mainTitle, subTitle, category }) => {
@@ -47,9 +46,5 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
   );
 };
 
-MenuByCategory.propTypes = {
-  mainTitle: checkPropTypes.string,
-  subTitle: checkPropTypes.string,
-  category: checkPropTypes.string,
-};
+
 export default MenuByCategory;
