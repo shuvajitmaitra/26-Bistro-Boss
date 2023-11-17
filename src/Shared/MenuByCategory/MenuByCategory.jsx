@@ -9,7 +9,7 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
     fetch("/menu.json")
       .then((res) => res.json())
       .then((data) => {
-        const menus = data.filter(
+        const menus = data?.filter(
           (singleData) => singleData.category == category
         );
         setMenus(menus);
@@ -22,7 +22,7 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
         mainTitle={mainTitle}
       ></Title>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {menus.map((menu) => (
+        {menus?.map((menu) => (
           <Menu
             key={menu._id}
             title={menu.name}
@@ -45,6 +45,5 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
     </div>
   );
 };
-
 
 export default MenuByCategory;

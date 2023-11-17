@@ -9,13 +9,12 @@ import OrderTab from "./OrderTab";
 import { useParams } from "react-router-dom";
 
 const OrderFood = () => {
-  const item = ['salad', 'pizza', 'dessert', 'soup', 'drinks']
-  const {category} = useParams()
-  const initialIndex = item.indexOf(category)
+  const item = ["salad", "pizza", "dessert", "soup", "drinks"];
+  const { category } = useParams();
+  const initialIndex = item.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menus, isLoading] = useMenu();
 
-  
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center">
@@ -23,11 +22,11 @@ const OrderFood = () => {
       </div>
     );
   }
-  const pizzas = menus.filter((item) => item.category === "pizza");
-  const dessert = menus.filter((item) => item.category === "dessert");
-  const soup = menus.filter((item) => item.category === "soup");
-  const salad = menus.filter((item) => item.category === "salad");
-  const drink = menus.filter((item) => item.category === "drinks");
+  const pizzas = menus?.filter((item) => item.category === "pizza");
+  const dessert = menus?.filter((item) => item.category === "dessert");
+  const soup = menus?.filter((item) => item.category === "soup");
+  const salad = menus?.filter((item) => item.category === "salad");
+  const drink = menus?.filter((item) => item.category === "drinks");
 
   return (
     <div className="max-w-screen-xl mx-auto">
