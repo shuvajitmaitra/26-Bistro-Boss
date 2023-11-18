@@ -1,4 +1,4 @@
-import { FaCalendar, FaHome, FaShoppingBag, FaShoppingCart, FaWallet } from "react-icons/fa";
+import { FaBook, FaCalendar, FaHome, FaListUl, FaShoppingBag, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { MdOutlineHome } from "react-icons/md";
@@ -9,14 +9,40 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
 
-
+const isAdmin = true;
     return(
         <div className="min-h-screen max-w-screen-xl mx-auto flex text-center ">
              <div className="w-64 bg-[#D1A054] space-y-3" >
                 <div>
                     <h3 className="font-bold">Bistro Boss <br /> Restaurant</h3>
                 </div>
+               {
+                isAdmin ? 
+                <>
+                 <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
+                <FaHome /> 
+                    <li><NavLink to={'adminHome'}>Admin Home</NavLink></li>
+                </ul>
                 <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
+                <FaUtensils/> 
+                    <li><NavLink to={'addItem'}>add items</NavLink></li>
+                </ul>
+                <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
+                <FaListUl/> 
+                    <li><NavLink to={'manageItem'}>manage items</NavLink></li>
+                </ul>
+                <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
+                <FaBook /> 
+                    <li><NavLink to='manageBooking'>manage Booking</NavLink></li>
+                </ul>
+                <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
+                <FaUsers /> 
+                    <li><NavLink to={'allUsers'}>All users</NavLink></li>
+                </ul>
+                </>
+                :
+                <>
+                 <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
                 <FaHome /> 
                     <li><NavLink>User Home</NavLink></li>
                 </ul>
@@ -36,6 +62,8 @@ const Dashboard = () => {
                 <FaRankingStar /> 
                     <li><NavLink>My Cart</NavLink></li>
                 </ul>
+                </>
+               }
 
                 <hr className="mx-6" /> {/* Divider is here */}
 
