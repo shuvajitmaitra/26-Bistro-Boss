@@ -7,7 +7,7 @@ import useAuth from "../../Hook/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [carts] = useCart()
+  const [carts] = useCart();
   const handleLogOut = () => {
     Swal.fire({
       title: "Logout?",
@@ -23,9 +23,11 @@ const Navbar = () => {
           .then((result) => {
             console.log(result.user);
             Swal.fire({
-              title: "Logged Out!",
-              text: "Your are successfully log out!",
+              title: "Deleted!",
+              text: "Your are successfully delete!",
               icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
             });
           })
           .catch((error) => {
@@ -52,7 +54,6 @@ const Navbar = () => {
           </span>
           <span className="absolute bg-yellow-500 px-1 right-0 top-0 text-xs rounded-full ">
             {carts?.length}
-           
           </span>
         </NavLink>
       </li>

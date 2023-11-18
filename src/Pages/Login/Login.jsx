@@ -8,8 +8,9 @@ import {
 import { useContext, useEffect, useState, } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
-import {  useLocation, useNavigate } from "react-router-dom";
+import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const navigate = useNavigate()
@@ -117,6 +118,13 @@ const Login = () => {
               value="Login"
            />
               
+          </div>
+          <div>
+            New here? <span className="font-bold"><Link to="/register">Create a new account</Link></span>
+          </div>
+          <div  className="divider"></div>
+          <div>
+            <SocialLogin></SocialLogin>
           </div>
         </form>
       </div>
