@@ -61,7 +61,7 @@ const Register = () => {
       <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
-      <div className="max-w-screen-xl mx-auto flex justify-center items-center gap-20 h-screen p-20">
+      <div className="max-w-screen-2xl mx-auto flex justify-center items-center gap-20 h-screen p-20">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="card-body flex-1 "
@@ -132,9 +132,12 @@ const Register = () => {
             </button>
           </div>
           <div>
-            Already have an account?     <span className="font-bold"><Link to="/login"> Go to login</Link></span>
+            Already have an account?{" "}
+            <span className="font-bold">
+              <Link to="/login"> Go to login</Link>
+            </span>
           </div>
-          <div  className="divider"></div>
+          <div className="divider"></div>
           <div>
             <SocialLogin></SocialLogin>
           </div>

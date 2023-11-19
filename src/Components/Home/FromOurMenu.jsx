@@ -6,7 +6,7 @@ const FromOurMenu = () => {
   return (
     <Parallax
       style={{ backgroundImage: `url(${image1})` }}
-      className=" h-screen bg-no-repeat bg-cover bg-center bg-black bg-blend-overlay bg-opacity-50 max-w-screen-xl mx-auto mt-20 flex items-center justify-center"
+      className=" h-screen bg-no-repeat bg-cover bg-center bg-black bg-blend-overlay bg-opacity-50 max-w-screen-2xl mx-auto mt-20 flex items-center justify-center"
     >
       <div className="text-white w-3/4 mx-auto">
         <Title

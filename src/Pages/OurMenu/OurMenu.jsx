@@ -2,11 +2,11 @@ import MenuByCategory from "../../Shared/MenuByCategory/MenuByCategory";
 import imageCover from "../../assets/menu/banner3.jpg";
 import chefService from "../../assets/home/chef-service.jpg";
 import { Helmet } from "react-helmet-async";
-import { Parallax } from 'react-parallax';
+import { Parallax } from "react-parallax";
 
 const OurMenu = () => {
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-2xl mx-auto">
       <Helmet>
         <title>Bistro Boss | Our Menu</title>
       </Helmet>
@@ -16,25 +16,20 @@ const OurMenu = () => {
         bgImage={imageCover}
         bgImageAlt="the dog"
         strength={-200}
-    >
-      <div
-       
-        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-xl mx-auto flex items-center justify-center"
       >
-        <div
-          className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto
+        <div className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-2xl mx-auto flex items-center justify-center">
+          <div
+            className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto
            "
-        >
-          <h1 className="text-xl md:text-6xl font-medium uppercase">
-          OUR MENU
-          </h1>
-          <p>
-          Would you like to try a dish?
-          </p>
+          >
+            <h1 className="text-xl md:text-6xl font-medium uppercase">
+              OUR MENU
+            </h1>
+            <p>Would you like to try a dish?</p>
+          </div>
         </div>
-      </div>
-    </Parallax>
-      
+      </Parallax>
+
       <MenuByCategory
         subTitle="---Don't miss---"
         mainTitle="TODAY'S OFFER"
@@ -43,7 +38,7 @@ const OurMenu = () => {
       {/* DESSERTS */}
       <div
         style={{ backgroundImage: `url(${chefService})` }}
-        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-xl mx-auto mt-20 flex items-center justify-center"
+        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-2xl mx-auto mt-20 flex items-center justify-center"
       >
         <div
           className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto
@@ -64,7 +59,7 @@ const OurMenu = () => {
 
       <div
         style={{ backgroundImage: `url(${chefService})` }}
-        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-xl mx-auto mt-20 flex items-center justify-center"
+        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-2xl mx-auto mt-20 flex items-center justify-center"
       >
         <div
           className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto
@@ -83,7 +78,7 @@ const OurMenu = () => {
 
       <div
         style={{ backgroundImage: `url(${chefService})` }}
-        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-xl mx-auto mt-20 flex items-center justify-center"
+        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-2xl mx-auto mt-20 flex items-center justify-center"
       >
         <div
           className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto
@@ -102,7 +97,7 @@ const OurMenu = () => {
 
       <div
         style={{ backgroundImage: `url(${chefService})` }}
-        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-xl mx-auto mt-20 flex items-center justify-center"
+        className=" h-screen bg-no-repeat bg-cover bg-center max-w-screen-2xl mx-auto mt-20 flex items-center justify-center"
       >
         <div
           className="p-20 bg-black bg-opacity-50 text-white text-center space-y-6 w-3/4 mx-auto

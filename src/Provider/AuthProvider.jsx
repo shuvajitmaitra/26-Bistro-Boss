@@ -9,12 +9,14 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const axiosPublic = useAxiosPublic()
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -41,7 +43,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe;
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

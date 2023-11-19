@@ -76,7 +76,7 @@ const Navbar = () => {
   );
   return (
     <Container>
-      <div className="navbar fixed z-10 max-w-screen-xl bg-black bg-opacity-30 text-white">
+      <div className="navbar fixed z-10 max-w-screen-2xl bg-black bg-opacity-30 text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label

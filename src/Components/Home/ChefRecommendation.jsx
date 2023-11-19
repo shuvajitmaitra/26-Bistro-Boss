@@ -7,7 +7,7 @@ const ChefRecommendation = () => {
   const data = menus?.filter((onData) => onData.category == "salad");
 
   return (
-    <div className="mt-20 py-14 max-w-screen-xl mx-auto">
+    <div className="mt-20 py-14 max-w-screen-2xl mx-auto">
       <Title
         subTitle="---Should Try---"
         mainTitle="CHEF RECOMMENDS"

@@ -7,25 +7,37 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 const Banner = () => {
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <Carousel  
-      infiniteLoop="true"
-      >
+    <div className="max-w-screen-2xl mx-auto">
+      <Carousel infiniteLoop="true">
         <div className="h-[90vh]">
-          <img  src={image1} className=" h-full"/>
-          
+          <img
+            src={image1}
+            className=" h-full"
+          />
         </div>
         <div className="h-[90vh]">
-        <img  src={image2} className=" h-full"/>
+          <img
+            src={image2}
+            className=" h-full"
+          />
         </div>
         <div className="h-[90vh]">
-        <img  src={image3} className=" h-full"/>
+          <img
+            src={image3}
+            className=" h-full"
+          />
         </div>
         <div className="h-[90vh]">
-        <img  src={image4}className=" h-full"/>
+          <img
+            src={image4}
+            className=" h-full"
+          />
         </div>
         <div className="h-[90vh]">
-        <img  src={image5}className=" h-full"/>
+          <img
+            src={image5}
+            className=" h-full"
+          />
         </div>
       </Carousel>
     </div>

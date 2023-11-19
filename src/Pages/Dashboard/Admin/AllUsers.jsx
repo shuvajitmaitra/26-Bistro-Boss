@@ -7,14 +7,20 @@ import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: users, refetch } = useQuery({
+  const { data: users, refetch, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosPublic.get("/users");
       return res.data;
     },
   });
-  
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -41,6 +47,32 @@ const AllUsers = () => {
       }
     });
   };
+
+  const handleMakeAdmin=(id, name)=>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to make an Admin`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.patch(`/users/admin/${id}`)
+          .then((res) => {
+            if(res?.data?.modifiedCount){
+              Swal.fire({
+                title: "Admin!",
+                text: `${name} is a Admin now!`,
+                icon: "success"
+              });
+              refetch()
+            }
+          });
+        }
+      });
+  }
   return (
     <div className="bg-red-200 min-h-screen py-5">
       <Title
@@ -75,6 +107,7 @@ const AllUsers = () => {
                     </span> 
                     :
                     <span
+                    onClick={() => handleMakeAdmin(user?._id, user?.name)}
                       className=" btn w-fit text-white bg-green-500 text-xl rounded flex justify-center items-center"
                     >
                       <FaUsers />

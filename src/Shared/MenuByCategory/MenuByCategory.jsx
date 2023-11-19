@@ -16,7 +16,7 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
       });
   }, [category]);
   return (
-    <div className="max-w-screen-xl mx-auto mt-20 ">
+    <div className="max-w-screen-2xl mx-auto mt-20 ">
       <Title
         subTitle={subTitle}
         mainTitle={mainTitle}

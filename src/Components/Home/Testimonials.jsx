@@ -17,7 +17,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div className="max-w-screen-xl mx-auto mt-20">
+    <div className="max-w-screen-2xl mx-auto mt-20">
       <Title
         subTitle="---What Our Clients Say---"
         mainTitle="TESTIMONIALS"
