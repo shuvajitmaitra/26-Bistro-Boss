@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import Title from "../../../Shared/Tilte/Title";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaUserSecret, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const AllUsers = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: users, refetch, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/users");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
@@ -33,7 +33,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/users/${id}`)
+        axiosSecure.delete(`/users/${id}`)
         .then((res) => {
           if(res?.data?.deletedCount){
             Swal.fire({
@@ -59,7 +59,7 @@ const AllUsers = () => {
         confirmButtonText: "Yes",
       }).then((result) => {
         if (result.isConfirmed) {
-          axiosPublic.patch(`/users/admin/${id}`)
+          axiosSecure.patch(`/users/admin/${id}`)
           .then((res) => {
             if(res?.data?.modifiedCount){
               Swal.fire({

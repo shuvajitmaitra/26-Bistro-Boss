@@ -14,9 +14,12 @@ import { IoMenu } from "react-icons/io5";
 import { MdOutlineHome } from "react-icons/md";
 
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hook/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin);
+  
   return (
     <div className="min-h-screen max-w-screen-2xl mx-auto flex text-center ">
       <div className="w-64 bg-[#D1A054] space-y-3">

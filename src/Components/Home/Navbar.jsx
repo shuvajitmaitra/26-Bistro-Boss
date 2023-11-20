@@ -4,9 +4,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useCart from "../../Hook/useCart";
 import useAuth from "../../Hook/useAuth";
+import useAdmin from "../../Hook/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin()
   const [carts] = useCart();
   const handleLogOut = () => {
     Swal.fire({
@@ -47,7 +49,13 @@ const Navbar = () => {
       <li>
         <NavLink to="/order-food/salad">Order Food</NavLink>
       </li>
-      <li className="ml-3">
+      {
+        isAdmin ?
+        <li>
+            <NavLink to="/dashboard/adminHome">Admin</NavLink>
+          </li>
+          :
+          <li className="ml-3">
         <NavLink to="/dashboard/cart">
           <span className="relative text-xl">
             <FaShoppingCart />
@@ -57,6 +65,7 @@ const Navbar = () => {
           </span>
         </NavLink>
       </li>
+      }
 
       {user ? (
         <li>
@@ -64,9 +73,9 @@ const Navbar = () => {
         </li>
       ) : (
         <>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
+        <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
           <li>
             <NavLink to="/register">Register</NavLink>
           </li>

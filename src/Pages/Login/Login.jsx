@@ -15,7 +15,7 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.state);
+  // console.log(location.state);
   const { userSignIn } = useContext(AuthContext);
 
   const [, setValid] = useState(true);
@@ -32,7 +32,7 @@ const Login = () => {
       .then(() => {
         toast.success("Successfully user logged in!");
 
-        navigate(location.state ? location.state.from : "/");
+        navigate(location?.state ? location?.state?.from : "/");
       })
       .catch((error) => {
         toast.error(error.message.firebase, "Email/Password invalid");

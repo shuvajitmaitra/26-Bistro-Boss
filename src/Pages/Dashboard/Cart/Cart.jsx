@@ -10,7 +10,7 @@ const Cart = () => {
 
   const totalPrice = parseFloat(
     cart.reduce((acc, cart) => acc + cart.price, 0)
-  );
+  ).toFixed(2);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -44,8 +44,8 @@ const Cart = () => {
         mainTitle="WANNA ADD MORE?"
       ></Title>
       <div className="flex justify-between items-center ">
-        <h2>Total Order:{cart.length}</h2>
-        <h2>Total Price:{totalPrice}</h2>
+        <h2>Total Order: { cart.length}</h2>
+        <h2>Total Price: $ {totalPrice}</h2>
         <button>Pay</button>
       </div>
       <div>
@@ -70,13 +70,12 @@ const Cart = () => {
                   <th>
                     <label>
                       {index + 1}
-                      {console.log(singleCart)}
                     </label>
                   </th>
                   <td>
                     <div className="flex items-center justify-between gap-3">
                       <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className=" rounded-2xl w-12 h-12">
                           <img src={singleCart.image} />
                         </div>
                       </div>
