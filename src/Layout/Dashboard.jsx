@@ -18,7 +18,7 @@ import useAdmin from "../Hook/useAdmin";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
-  console.log(isAdmin);
+  // console.log(isAdmin);
   
   return (
     <div className="min-h-screen max-w-screen-2xl mx-auto flex text-center ">

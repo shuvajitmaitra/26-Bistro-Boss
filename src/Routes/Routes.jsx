@@ -14,6 +14,7 @@ import ManageItem from "../Pages/Dashboard/Admin/ManageItem";
 import ManageBooking from "../Pages/Dashboard/Admin/ManageBooking";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoute from "./AdminRoute";
+import UpdateItem from "../Pages/Dashboard/Admin/UpdateItem";
 
 const Routes = createBrowserRouter([
   {
@@ -65,6 +66,11 @@ const Routes = createBrowserRouter([
       {
         path: "manageItem",
         element: <AdminRoute><ManageItem></ManageItem></AdminRoute>,
+      },
+      {
+        path: "updateItem/:id",
+        element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/singleMenu/${params.id}`)
       },
       {
         path: "manageBooking",

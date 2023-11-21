@@ -2,11 +2,13 @@ import useAuth from "../../Hook/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
     const axiosPublic = useAxiosPublic()
 const {googleSignIn} = useAuth() 
+const navigate = useNavigate()
 
 const handleGoogleSignIn = () =>{
     googleSignIn()
@@ -22,7 +24,9 @@ const handleGoogleSignIn = () =>{
             if(res.data.insertedId){
                 toast.success("User create successfully!")
             }
+            
         })
+        navigate("/")
     })
     .catch(error=>{
         console.log(error.message);

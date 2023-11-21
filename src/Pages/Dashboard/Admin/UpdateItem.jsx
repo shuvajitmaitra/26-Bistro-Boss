@@ -1,44 +1,45 @@
 import { useForm } from "react-hook-form";
 import Title from "../../../Shared/Tilte/Title";
-import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
-import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
-const image_api_key = import.meta.env.VITE_IMAGE_KEY
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_api_key}`
+import toast from "react-hot-toast";
+import { FaUtensils } from "react-icons/fa";
+import { useLoaderData,  } from "react-router-dom";
+const image_api_key = import.meta.env.VITE_IMAGE_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_api_key}`;
 
-const AddItem = () => {
-    const axiosPublic = useAxiosPublic()
-    const axiosSecure = useAxiosSecure()
-  const { register, handleSubmit } = useForm();
+const UpdateItem = () => {
 
-  const onSubmit = async(data) => {
-    const imageFile = {image : data.image[0]}
-    const res = await axiosPublic.post(image_hosting_api, imageFile,{
-        headers: {'content-type': 'multipart/form-data'}
-    })
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+    const { register, handleSubmit } = useForm();
+    const { name, category, recipe, price, _id } = useLoaderData();
+    
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: { "content-type": "multipart/form-data" },
+    });
     console.log(res.data.data.display_url);
-    if(res?.data?.success){
-        const dataList = {
-            name: data?.name,
-            category: data?.category,
-            recipe: data?.recipe,
-            price: parseFloat(data?.price),
-            image: res.data?.data?.display_url
-        }
-
-        const response = await axiosSecure.post('/menu', dataList)
-        if(response.data.insertedId){
-            toast.success("Menu added")
-        }
+    if (res?.data?.success) {
+      const dataList = {
+        name: data?.name,
+        category: data?.category,
+        recipe: data?.recipe,
+        price: parseFloat(data?.price),
+        image: res.data?.data?.display_url,
+      };
+      const response = await axiosSecure.patch(`/menuUpdate/${_id}`, dataList);
+      if (response.data.modifiedCount) {
+        toast.success("Menu Updated");
+      }
     }
   };
-
   return (
-    <div  className="min-h-screen py-5">
+    <div className="min-h-screen py-5">
       <Title
-        mainTitle="add an item"
-        subTitle="What's new?"
+        mainTitle="Update an Item"
+        subTitle="New Update?"
       ></Title>
       <div className="p-10 bg-zinc-200 m-10 rounded-lg">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,6 +50,7 @@ const AddItem = () => {
             <input
               type="text"
               placeholder="Recipe Name"
+              defaultValue={name}
               {...register("name", { required: true })}
               required
               className="input input-bordered w-full"
@@ -61,16 +63,10 @@ const AddItem = () => {
                 <span className="label-text">Category*</span>
               </label>
               <select
-                defaultValue="default"
+                defaultValue={category}
                 {...register("category", { required: true })}
                 className="select select-bordered w-full"
               >
-                <option
-                  disabled
-                  value="default"
-                >
-                  Select a category
-                </option>
                 <option value="salad">Salad</option>
                 <option value="pizza">Pizza</option>
                 <option value="soup">Soup</option>
@@ -87,6 +83,7 @@ const AddItem = () => {
               <input
                 type="number"
                 placeholder="Price"
+                defaultValue={price}
                 {...register("price", { required: true })}
                 className="input input-bordered w-full"
               />
@@ -99,6 +96,7 @@ const AddItem = () => {
             </label>
             <textarea
               {...register("recipe")}
+              defaultValue={recipe}
               className="textarea textarea-bordered h-24"
               placeholder="Bio"
             ></textarea>
@@ -112,12 +110,15 @@ const AddItem = () => {
             />
           </div>
 
-          <button type="submit" className="btn">
-            Add Item <FaUtensils className="ml-4"></FaUtensils>
+          <button
+            type="submit"
+            className="btn"
+          >
+            Update Item <FaUtensils className="ml-4"></FaUtensils>
           </button>
         </form>
       </div>
     </div>
   );
 };
-export default AddItem;
+export default UpdateItem;
