@@ -6,7 +6,7 @@ import OrderFood from "../Pages/OrderFood/OrderFood";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../Pages/Dashboard/Cart/Cart";
+import Cart from "../Pages/Dashboard/User/Cart";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import AddItem from "../Pages/Dashboard/Admin/AddItem";
@@ -15,6 +15,7 @@ import ManageBooking from "../Pages/Dashboard/Admin/ManageBooking";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoute from "./AdminRoute";
 import UpdateItem from "../Pages/Dashboard/Admin/UpdateItem";
+import Payments from "../Pages/Dashboard/User/Payments";
 
 const Routes = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const Routes = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "payment",
+        element: <Payments></Payments>,
       },
       {
         path: "adminHome",

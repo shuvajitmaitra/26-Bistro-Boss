@@ -72,7 +72,7 @@ const Dashboard = () => {
             <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">
               <FaCalendar />
               <li>
-                <NavLink>Reservation</NavLink>
+                <NavLink to='/dashboard/payment'>Reservation</NavLink>
               </li>
             </ul>
             <ul className="flex items-center justify-start px-10 text-md gap-2 hover:text-white font-medium">

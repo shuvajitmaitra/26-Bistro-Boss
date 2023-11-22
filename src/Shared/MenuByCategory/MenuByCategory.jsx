@@ -22,9 +22,9 @@ const MenuByCategory = ({ mainTitle, subTitle, category }) => {
         mainTitle={mainTitle}
       ></Title>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {menus?.map((menu) => (
+        {menus?.map((menu,index) => (
           <Menu
-            key={menu._id}
+            key={index}
             title={menu.name}
             image={menu.image}
             price={menu.price}

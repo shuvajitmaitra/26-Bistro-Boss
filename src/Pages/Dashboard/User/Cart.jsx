@@ -1,8 +1,12 @@
-import useAxiosSecure from "../../../Hook/useAxiosSecure";
-import useCart from "../../../Hook/useCart";
-import Title from "../../../Shared/Tilte/Title";
+
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import useCart from "../../../Hook/useCart";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import Title from "../../../Shared/Tilte/Title";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 const Cart = () => {
   const [cart,refetch] = useCart();
@@ -26,11 +30,7 @@ const Cart = () => {
         axiosSecure.delete(`/cart/${id}`)
         .then((res) => {
           if(res?.data?.deletedCount){
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
+            toast.success("Item deleted")
             refetch()
           }
         });
@@ -40,20 +40,24 @@ const Cart = () => {
   return (
     <div className="bg-[#F6F6F6]">
       <Title
-        subtitle="---My Cart---"
+        subTitle="---My Cart---"
         mainTitle="WANNA ADD MORE?"
       ></Title>
-      <div className="flex justify-between items-center ">
-        <h2>Total Order: { cart.length}</h2>
-        <h2>Total Price: $ {totalPrice}</h2>
-        <button>Pay</button>
+      <div className="p-10 m-10 rounded-lg bg-white">
+      <div className="flex justify-between items-center py-5">
+        <h2 className="text-xl font-bold">Total Order: { cart.length}</h2>
+        <h2 className="text-xl font-bold">Total Price: $ {totalPrice}</h2>
+      {
+        cart.length ?  <Link to="/dashboard/payment"> <button  disabled={!cart.length} className="btn  bg-[#D1A054] text-white">Pay</button></Link>
+        :
+         <button  disabled={!cart.length} className="btn btn-disabled bg-[#D1A054] text-white">Pay</button>
+      }
       </div>
-      <div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-t-xl">
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-[#D1A054] rounded-t-lg">
+              <tr className="bg-[#D1A054] rounded-t-lg text-white">
                 <th>
                   <label>#</label>
                 </th>
